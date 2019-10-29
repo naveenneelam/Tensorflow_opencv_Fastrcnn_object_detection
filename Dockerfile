@@ -69,9 +69,8 @@ ENV PYTHONPATH $PYTHONPATH:/tensorflow/models/research:/tensorflow/models/resear
 
 # Install wget (to make life easier below) and editors (to allow people to edit
 # the files inside the container)
-#COPY otherdata /tensorflow/
-RUN apt-get install -y wget nano &&  \ wget http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz && \tar xzf faster_rcnn_inception_v2_coco_2018_01_28.tar.gz && \ mv faster_rcnn_inception_v2_coco_2018_01_28 /tensorflow/models/research/object_detection/ 
-RUN cp /tensorflow/models/research/object_detection/samples/configs/faster_rcnn_inception_v2_pets.config /tensorflow/otherdata/training/ &&
+COPY otherdata /tensorflow/
+RUN apt-get install -y wget nano &&  cp /tensorflow/models/research/object_detection/samples/configs/faster_rcnn_inception_v2_pets.config /tensorflow/otherdata/training/ && \ wget http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz && \tar xzf faster_rcnn_inception_v2_coco_2018_01_28.tar.gz && \ mv faster_rcnn_inception_v2_coco_2018_01_28 /tensorflow/models/research/object_detection/ 
 
 
 WORKDIR /tensorflow
